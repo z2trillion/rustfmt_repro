@@ -1,30 +1,7 @@
-// We want these functions to be called `fft`
-#![allow(clippy::module_name_repetitions)]
-// Many false positives from trait bounds
-#![allow(single_use_lifetimes)]
-
-mod bit_reverse;
-mod prefetch;
-mod recursive;
-pub mod small;
-mod transpose;
-
-#[cfg(feature = "std")]
-mod radix_sqrt;
-
 use crate::{Fft, FieldLike, Inv, Pow, RefFieldLike};
 use std::prelude::v1::*;
 
-// Re-exports
-// TODO: Only re-export for bench
-pub use bit_reverse::{permute, permute_index};
-pub use prefetch::{Prefetch, PrefetchIndex};
-#[cfg(feature = "std")]
-pub use radix_sqrt::radix_sqrt;
-pub use recursive::fft_vec_recursive;
-pub use transpose::transpose_square_stretch;
-
-///
+/// 
 /// * D. H. Bailey (1990). FFTs in external or hierarchical memory. <https://www.davidhbailey.com/dhbpapers/fftq.pdf>
 /// * W. M. Gentleman & G. Sande (1966). Fast Fourier Transforms: for fun and
 ///   profit. <https://doi.org/10.1145/1464291.1464352> <http://cis.rit.edu/class/simg716/FFT_Fun_Profit.pdf>
